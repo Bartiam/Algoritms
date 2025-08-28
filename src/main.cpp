@@ -89,14 +89,49 @@ bool MySubstring(const std::string& str, const std::string& substr)
 	return false;
 }
 
+template <typename Container>
+void Heapify(Container& container, size_t n, size_t i)
+{
+	size_t largest = i;
+	size_t left = 2 * i + 1;
+	size_t right = 2 * i + 2;
+
+	if (left < n && container[left] > container[largest])
+		largest = left;
+
+	if (right < n && container[right] > container[largest])
+		largest = right;
+
+	if (largest != i)
+	{
+		std::swap(container[i], container[largest]);
+		Heapify(container, n, largest);
+	}
+}
+
+template <typename Container>
+void HeapSort(Container& container)
+{
+	size_t n = container.size();
+
+	for (int i = n / 2 - 1; i >= 0; --i)
+		Heapify(container, n, i);
+
+	for (int i = n - 1; i > 0; --i)
+	{
+		std::swap(container[0], container[i]);
+		Heapify(container, i, 0);
+	}
+}
+
 int main()
 {
-	/*
+	
 	std::vector<int> vec = { 128, 22, 258, 64, 25 };
 	Print(vec);;
-	InsertionSort(vec);
+	HeapSort(vec);
 	Print(vec);
-	*/
+	
 
 	/*
 	std::string str = "1234567890";
