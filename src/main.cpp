@@ -126,12 +126,12 @@ void HeapSort(Container& container)
 
 int main()
 {
-	
-	std::vector<int> vec = { 128, 22, 258, 64, 25 };
+	/*
+	std::vector<int> vec = { 2, 5, 6, 9, -1, 3 };
 	Print(vec);;
 	HeapSort(vec);
 	Print(vec);
-	
+	*/
 
 	/*
 	std::string str = "1234567890";
@@ -140,11 +140,11 @@ int main()
 	std::cout << str << std::endl;
 	*/
 
-	/*
+	
 	std::string str = "Hello";
 	std::string substr = "lo";
 	std::cout << MySubstring(str, substr) << "\n";
-	*/
+	
 	
 	
 	return 0;
