@@ -112,6 +112,8 @@ void Heapify(Container& container, size_t n, size_t i)
 template <typename Container>
 void HeapSort(Container& container)
 {
+	if (container.size() <= 1) return;
+
 	size_t n = container.size();
 
 	for (int i = n / 2 - 1; i >= 0; --i)
@@ -124,14 +126,43 @@ void HeapSort(Container& container)
 	}
 }
 
+template <typename Container>
+void QuickSort(Container& container)
+{
+	if (container.size() <= 1) return;
+
+	Container less, equal, greater;
+
+	auto pivot = *std::next(container.begin(), container.size() / 2);
+
+	for (const auto& element : container)
+	{
+		if (element < pivot)
+			less.push_back(element);
+		else if (element == pivot)
+			equal.push_back(element);
+		else
+			greater.push_back(element);
+	}
+
+	QuickSort(less);
+	QuickSort(greater);
+
+	container.clear();
+
+	container.insert(container.end(), less.begin(), less.end());
+	container.insert(container.end(), equal.begin(), equal.end());
+	container.insert(container.end(), greater.begin(), greater.end());
+}
+
 int main()
 {
-	/*
+	
 	std::vector<int> vec = { 2, 5, 6, 9, -1, 3 };
 	Print(vec);;
-	HeapSort(vec);
+	QuickSort(vec);
 	Print(vec);
-	*/
+	
 
 	/*
 	std::string str = "1234567890";
@@ -140,11 +171,11 @@ int main()
 	std::cout << str << std::endl;
 	*/
 
-	
+	/*
 	std::string str = "Hello";
 	std::string substr = "lo";
 	std::cout << MySubstring(str, substr) << "\n";
-	
+	*/
 	
 	
 	return 0;
